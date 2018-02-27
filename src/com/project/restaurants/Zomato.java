@@ -35,7 +35,7 @@ public class Zomato extends HttpServlet {
 		String city = request.getParameter("city");
 		
 		request.setAttribute("city", city);
-		RequestDispatcher rd = request.getRequestDispatcher("cityPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request,response);
 	}
 
