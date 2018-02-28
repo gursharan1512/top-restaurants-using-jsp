@@ -8,8 +8,8 @@
 </head>
 <body>
 	<%
-		String city=(String)request.getAttribute("city");
-		out.print("Your city is "+city);
+		String rest=(String)request.getAttribute("rest");
+		out.print("Your city is "+rest);
 	%>
 </body>
 </html>
