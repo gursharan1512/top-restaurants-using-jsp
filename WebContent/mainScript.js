@@ -10,7 +10,7 @@ function getCity(){
 	    	for(var i=0;i<10;i++){
 	    		var resName=data.restaurants[i].restaurant.name;
 	    		var resID=data.restaurants[i].restaurant.id;
-	    		resinfo += '<hr>'+resName+' <button type="button" class="btn btn-primary" onClick="createFav(\''+resID+'\')">Add to Favourites</button></hr>';
+	    		resinfo += '<hr>'+resName+' <button type="button" class="btn btn-primary" onClick="createFav(\''+resID+'\',\''+resName+'\')">Add to Favourites</button></hr>';
 	    	}
 	        document.getElementById("addInfo").innerHTML = resinfo;
 	    }
@@ -19,9 +19,28 @@ function getCity(){
 	xhttp.send();
 }
 
-function createFav(resId){
+function createFav(resId,resName){
 	var ttp = new XMLHttpRequest();
-	var url2="http://localhost:8090/top-restaurants-using-jsp/zomato?rid="+resId;
+	var url2="http://localhost:8090/top-restaurants-using-jsp/zomato?rid="+resId+"&rName="+resName;
 	ttp.open("GET", url2, true);
 	ttp.send();
+}
+
+function getFav(){
+	var xhttp = new XMLHttpRequest();
+	var url3="http://localhost:8090/top-restaurants-using-jsp/readJSON";
+	
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			var myArr=JSON.parse(this.responseText);
+			var favRes = "";
+			for(var x in myArr){
+				favRes += myArr[x];
+			}
+			document.getElementById("addInfo").innerHTML = favRes;
+		}
+	};
+	
+	xhttp.open("GET", url3, true);
+	xhttp.send();
 }

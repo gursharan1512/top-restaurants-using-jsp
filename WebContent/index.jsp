@@ -27,10 +27,12 @@
 	</div>
 	
 	<form>
-		Enter your city:<input type="text" id="city"/>
-		<button type="button" class="btn btn-primary" onClick="getCity()">Primary</button>
+		Search for restaurant:<input type="text" id="city"/>
+		<button type="button" class="btn btn-primary" onClick="getCity()">SEARCH</button>
+		<button type="button" class="btn btn-primary" onClick="getFav()">Fav List</button>
 	</form>
 	<div id="addInfo"></div>
+	
 	
 	<script src="mainScript.js"></script>
 	<!-- Optional JavaScript -->

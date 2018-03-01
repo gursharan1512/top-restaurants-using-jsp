@@ -1,29 +1,32 @@
 package com.project.restaurants;
 
 import java.io.*;
-import org.json.*;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.Messaging.SyncScopeHelper;
+import org.json.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.*;
+import org.json.simple.JSONObject;
 
 /**
- * Servlet implementation class Zomato
+ * Servlet implementation class ReadJSON
  */
-
-
-@WebServlet("/zomato")
-public class Zomato extends HttpServlet {
+@WebServlet("/readJSON")
+public class ReadJSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Zomato() {
+    public ReadJSON() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,31 +37,19 @@ public class Zomato extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String resId = request.getParameter("rid");
-		String resName = request.getParameter("rName");
-		
-		JSONObject obj = new JSONObject();
-		JSONArray arr = new JSONArray();
+		JSONObject cityname=new JSONObject();
+		JSONParser ob = new JSONParser();
 		try {
-			obj.put("Name",resName);
-			System.out.println(obj);
-			FileWriter fw=new FileWriter("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json",true);
-			fw.write(obj.toString());
-			fw.flush();
-			fw.close();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		finally {
+			System.out.println("sharan");
+			cityname = (JSONObject) ob.parse(new FileReader("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json"));
+			System.out.println(cityname);
 			response.setContentType("application/json");
-			response.getWriter();
+			response.getWriter().write(cityname.toString());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
-		
-		//request.setAttribute("rest", resName);
-		//RequestDispatcher rd = request.getRequestDispatcher("cityPage.jsp");
-		//rd.forward(request,response);
 	}
 
 	/**
