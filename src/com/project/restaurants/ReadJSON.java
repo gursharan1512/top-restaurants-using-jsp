@@ -41,7 +41,7 @@ public class ReadJSON extends HttpServlet {
 		JSONParser ob = new JSONParser();
 		try {
 			System.out.println("sharan");
-			cityname = (JSONObject) ob.parse(new FileReader("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json"));
+			cityname = (JSONObject) ob.parse(new FileReader("/home/sapient/Documents/workspace-sts-3.9.2.RELEASE/top-restaurants-using-jsp/build/classes/com/project/restaurants/result.json"));
 			System.out.println(cityname);
 			response.setContentType("application/json");
 			response.getWriter().write(cityname.toString());

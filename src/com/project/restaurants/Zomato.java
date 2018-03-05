@@ -1,7 +1,9 @@
 package com.project.restaurants;
 
 import java.io.*;
-import org.json.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,9 @@ import org.omg.Messaging.SyncScopeHelper;
 @WebServlet("/zomato")
 public class Zomato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int count=0;
+	JSONArray arr = new JSONArray();
+	JSONObject obj = new JSONObject();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,14 +41,14 @@ public class Zomato extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String resId = request.getParameter("rid");
 		String resName = request.getParameter("rName");
+
 		
-		JSONObject obj = new JSONObject();
-		JSONArray arr = new JSONArray();
 		try {
-			obj.put("Name",resName);
+			arr.add(count++,resName);
+			obj.put("Name",arr);
 			System.out.println(obj);
-			FileWriter fw=new FileWriter("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json",true);
-			fw.write(obj.toString());
+			FileWriter fw=new FileWriter("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json");
+			fw.write(arr.toString());
 			fw.flush();
 			fw.close();
 		}
