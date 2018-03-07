@@ -11,27 +11,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
     
-    <title>Hello, world!</title>
+    <title>Restaurants Finder</title>
   </head>
   <body>
   
 	<div class="jumbotron jumbotron-fluid sharan">
 	  <div class="container sharan1">
 	  	<div class="row d-flex justify-content-center">
-	    	<h1 class="display-2">Zomato</h1>
+	    	<h1 class="display-2">Restaurants Finder</h1>
 	    </div>
 	    <div class="row d-flex justify-content-center">
 	    	<p class="lead">Find the best restaurants, cafés, and bars</p>
 	    </div>
 	  </div>
 	</div>
-	
-	<form>
-		Search for restaurant:<input type="text" id="city"/>
-		<button type="button" class="btn btn-primary" onClick="getCity()">SEARCH</button>
-		<button type="button" class="btn btn-primary" onClick="getFav()">Fav List</button>
-	</form>
-	<div id="addInfo"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-10">
+				<form>
+					Search for restaurant:<input type="text" id="city"/>
+					<button type="button" class="btn btn-primary" onClick="getCity()">SEARCH</button>
+				</form>
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn btn-primary" onClick="getFav()">Get Favourite List</button>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="addInfo" class="row">
+		</div>
+	</div>
 	
 	
 	<script src="mainScript.js"></script>

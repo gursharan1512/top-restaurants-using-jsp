@@ -4,6 +4,8 @@ import java.io.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +25,8 @@ public class Zomato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int count=0;
 	JSONArray arr = new JSONArray();
+	JSONArray arrAdd = new JSONArray();
+	JSONArray arrRating = new JSONArray();
 	JSONObject obj = new JSONObject();
        
     /**
@@ -39,16 +43,21 @@ public class Zomato extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String resId = request.getParameter("rid");
 		String resName = request.getParameter("rName");
+		String resImg = request.getParameter("rImg");
+		String resAdd = request.getParameter("rAdd");
+		String resRating = request.getParameter("rRating");
 
-		
 		try {
-			arr.add(count++,resName);
-			obj.put("Name",arr);
+			arr.add(count,resName);
+			obj.put("name",arr);
+			arrAdd.add(count,resAdd);
+			obj.put("address",arrAdd);
+			arrRating.add(count++,resRating);
+			obj.put("rating",arrRating);
 			System.out.println(obj);
 			FileWriter fw=new FileWriter("//home//sapient//Documents//workspace-sts-3.9.2.RELEASE//top-restaurants-using-jsp//build//classes//com//project//restaurants//result.json");
-			fw.write(arr.toString());
+			fw.write(obj.toString());
 			fw.flush();
 			fw.close();
 		}
